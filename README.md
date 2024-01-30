@@ -28,7 +28,7 @@ DEBUG:
 ->Values: []
 ->val_buffer, opr_buffer, left_num, right_num []
 
-PARSER:
+PARSER QUEUE:
 
 
 
@@ -40,21 +40,21 @@ When you input a string expression to the engine, say "$Enter String: x^2+2", wh
 
 Continuing with the first example, given that there will be no error generated, what happens next is that the entire expression string is parsed to generate a binary vector. In our case, the binary vector generated is [1,0]. In any expression, the algorithm then searches for a pattern of 1 (if the expression size is 3, not counting brackets) or "1,0", if larger than 3. The reasoning behind this pattern search is the following: 1 signals that the current char is a mathematical operation symbol (+,-,*,^,/) and has a higher priority than the one immediately right to it. 0 signal is opposite of signal 1. This means that if we find a "1,0" pattern, we are certain that we can execute that operation. We then take the operands and the operation symbol out of the string, and replace it with a abstract label such as r[n] (where n is a number of such labels starting from 1). After a single pass through the string, the algorithm generates the labels and replaces them in the string. These "r" (i.e. result) labels are treated as numbers by the algorithm in the subsequent passes. These steps are repeated until only one label remains. After only one label remains, the engine.py is finished executing, and the evaluate.py can use the parsed data to find the y value for any x. The reason this works is that the parsed data can be thought of as tuples in a queue (FIFO) data structure. The first tuple's value can certainly be calculated by the evaluate.py. The next tuples' values can be calculated by using the previously calculated value, or, if they do not include a "r" value as an operand, immediately from the operands themselves. Note that all of the tuples that contain only numbers or x in operands, are always found at the beginning of the queue, and in a row (if there are multiple). In our example, the output of the parsers will always look like: 
 
-PARSER: 
+PARSER QUEUE: 
 r1 (^,x,2)
 r2 (+,r1,2)
 END
 
-If we enter an example such as "", we get:
+You can easily see from this example output that the r2 value depends on the value of r1, thus we must calculate the value r1 first. If we enter an example such as "$Enter String: x^2+2^2/4", we get:
 
-PARSER:
+PARSER QUEUE:
 r1 (^,x,2)
 r2 (^,2,2)
 r3 (/,r2,4)
 r4 (+,r1,r3)
 END
 
-You can easily see from this example output that the r2 value depends on the value of r1, thus we must calculate the value r1 first.
+In this case you can see that the immediately calculable tuples (i.e. does that do not contain a "r" label) are all at the beginning and in a row.
 
 FINAL NOTE
 ----------
