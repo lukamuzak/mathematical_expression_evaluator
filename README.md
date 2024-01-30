@@ -54,7 +54,7 @@ r3 (/,r2,4)
 r4 (+,r1,r3)
 END
 
-In this case you can see that the immediately calculable tuples (i.e. does that do not contain a "r" label) are all at the beginning and in a row.
+In this case you can see that the immediately calculable tuples (i.e. those that do not contain a "r" label) are all at the beginning and in a row.
 
 FINAL NOTE
 ----------
