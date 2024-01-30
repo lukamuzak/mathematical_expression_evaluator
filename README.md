@@ -9,9 +9,9 @@ HOW TO RUN
 ----------
 Running the evaluator is as simple as running "$ python evaluate.py" on your command line. In this base case, the output will be a list of x values followed by a list of y values to which they are mapped to.
 
-\nInput: x^2
-\nX: [0,1,2,3,4,5,6,7,8,9,10]
-\nY: [0,1,4,9,16,25,36,49,64,81,100]
+Input: x^2
+X: [0,1,2,3,4,5,6,7,8,9,10]
+Y: [0,1,4,9,16,25,36,49,64,81,100]
 
 Additionaly, you can also pass additional arguments to the evaluator. These are used to output the parsed data, turn on the parser debug output, and to turn on a graphing option.
 
