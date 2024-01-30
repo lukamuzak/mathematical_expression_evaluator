@@ -3,7 +3,7 @@ Python code for parsing a string-form mathematical expression and evaluating it 
 
 PROJECT STRUCTURE
 -----------------
-The evaluator consists of two .py files. The first (engine.py) being used to parse the expression in string form, and the other (evaluate.py) to evaluate the result of the parsing over a range of x values passed as a list.
+The evaluator consists of two .py files. The first (engine.py) being used to parse the expression in string form, and the other (evaluate.py) to evaluate the result of the parsing over a range of x values passed as a list
 
 HOW TO RUN
 ----------
@@ -21,7 +21,6 @@ When the -c option is used, the output looks like:
 
 Input: x^2
 X: [0,1,2,3,4,5,6,7,8,9,10]
-Y: [0,1,4,9,16,25,36,49,64,81,100]
 
 DEBUG:
 ->Tokens: []
@@ -29,6 +28,10 @@ DEBUG:
 ->val_buffer, opr_buffer, left_num, right_num []
 
 PARSER QUEUE:
+
+
+OUTPUT:
+Y: [0,1,4,9,16,25,36,49,64,81,100]
 
 
 
